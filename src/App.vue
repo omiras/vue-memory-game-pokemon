@@ -5,9 +5,13 @@ import pokedex from './assets/pokedex.json';
 import backCardImage from './assets/back-card.png';
 import Card from './components/Card.vue';
 import ChessBoard from './components/ChessBoard.vue';
+import RadialProgress from "vue3-radial-progress";
+
 import { reactive } from 'vue';
 
 // Iteración 1. Haced un console.log para ver el resultado. Sugerencia: cread una variable nueva normal y corriente
+
+shuffleArray(pokedex);
 
 let pokemon = pokedex.slice(0, 10);
 
@@ -25,7 +29,8 @@ pokemon = pokemon.map((p) => {
 })
 
 const state = reactive({
-  score: 0
+  score: 0,
+  totalMatches: 10
 })
 
 function checkCards(isMatch) {
@@ -34,13 +39,19 @@ function checkCards(isMatch) {
   }
 }
 
+function shuffleArray(inputArray) {
+  inputArray.sort(() => Math.random() - 0.5);
+}
+
 
 </script>
 
 <template>
   <header>
     <h1>¡PokeMemory!</h1>
-    <p>Score: {{ state.score }} </p>
+    <RadialProgress :diameter="100" :completed-steps="state.score" :total-steps="state.totalMatches">
+      {{ state.score }} / {{ state.totalMatches }}
+    </RadialProgress>
   </header>
 
   <main>
