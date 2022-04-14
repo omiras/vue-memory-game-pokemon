@@ -30,11 +30,12 @@ console.log(cardsDoubled);
 const cardsChessBoard = reactive(cardsDoubled.map((card) => {
     return {
         ...card,
-        reveal: false
+        reveal: false,
+        isCorrect: false
     }
 }));
 
-shuffleArray(cardsChessBoard);
+// shuffleArray(cardsChessBoard);
 
 function onCardClicked(card) {
 
@@ -55,6 +56,8 @@ function onCardClicked(card) {
 
         const isMatch = selectedCards[0].id == selectedCards[1].id;
 
+
+
         // emitimos un evento al padre diciendo si hemos hecho match (true o false)
         emit('onCheckedCards', isMatch)
 
@@ -71,6 +74,8 @@ function onCardClicked(card) {
         }
         else {
             // la pareja es correcta. Hay que emitir un evento indicando que las dos cartas seleccionadas son iguales
+            selectedCards[0].isCorrect = true;
+            selectedCards[1].isCorrect = true;
             selectedCards.pop();
             selectedCards.pop();
 
@@ -86,16 +91,24 @@ function onCardClicked(card) {
 
 <template>
     <!-- Iteración 3: Utiliza adecuadamente el v-for para crear tantas Card como elementos hay en 'cards'. -->
-    <div>
-        <Card @click="onCardClicked(card)" v-for="(card, index) in cardsChessBoard" :key="index" :back="backCardImage"
-            :front="card.image" :reveal="card.reveal">
+    <div class="grid">
+        <Card :class="{ 'correct': card.isCorrect }" @click="onCardClicked(card)"
+            v-for="(card, index) in cardsChessBoard" :key="index" :back="backCardImage" :front="card.image"
+            :reveal="card.reveal">
         </Card>
     </div>
 
 </template>
 
 <style scoped>
-div {
+/* beautiful box shadow */
+.correct {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+
+div.grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 1rem;
