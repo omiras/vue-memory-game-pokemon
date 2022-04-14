@@ -21,7 +21,7 @@ const emit = defineEmits(['onCheckedCards'])
 const cardsDoubled = props.cards.concat(props.cards); // TODO: Dobla el número de cartas. Sugerencia: sale bastante fácil usando el operador de 'spread' (...) y el método .concat.
 
 // Variable de estado que guarde las cartas seleccionadas hasta el momento
-const selectedCards = [];
+const selectedCards = reactive([]);
 
 
 

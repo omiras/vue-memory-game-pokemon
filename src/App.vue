@@ -41,6 +41,7 @@ function checkCards(isMatch) {
   }
 }
 
+
 </script>
 
 <template>
