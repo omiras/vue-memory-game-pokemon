@@ -15,10 +15,10 @@ const props = defineProps({
 
 <template>
     <!-- Podemos usar en el template directamente las propiedades, simplemente poniendo su nomre -->
-
-    <img v-if="!reveal" :src="back" alt="pokemon card">
-    <img v-else :src="front" alt="pokemon butterfly">
-
+    <div>
+        <img v-if="!reveal" :src="back" alt="pokemon card">
+        <img v-if="reveal" :src="front" alt="pokemon butterfly">
+    </div>
 </template>
 
 <style scoped>

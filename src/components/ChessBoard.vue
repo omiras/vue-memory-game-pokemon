@@ -4,6 +4,8 @@
 import { reactive } from 'vue';
 import Card from './Card.vue';
 
+import { shuffleArray } from '@/utils/array.js';
+
 const props = defineProps({
     cards: Array,
     backCardImage: String
@@ -33,10 +35,6 @@ const cardsChessBoard = reactive(cardsDoubled.map((card) => {
 }));
 
 shuffleArray(cardsChessBoard);
-
-function shuffleArray(inputArray) {
-    inputArray.sort(() => Math.random() - 0.5);
-}
 
 function onCardClicked(card) {
 

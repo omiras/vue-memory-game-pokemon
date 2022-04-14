@@ -9,6 +9,8 @@ import RadialProgress from "vue3-radial-progress";
 
 import { reactive } from 'vue';
 
+import { shuffleArray } from '@/utils/array.js';
+
 // Iteración 1. Haced un console.log para ver el resultado. Sugerencia: cread una variable nueva normal y corriente
 
 shuffleArray(pokedex);
@@ -38,11 +40,6 @@ function checkCards(isMatch) {
     state.score++;
   }
 }
-
-function shuffleArray(inputArray) {
-  inputArray.sort(() => Math.random() - 0.5);
-}
-
 
 </script>
 
